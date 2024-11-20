@@ -5,7 +5,7 @@ library(dplyr)
 library(arcpullr)
 
 #set site name
-site_name <- "North Barrow"
+site_name <- "Drovers Hill Farm"
 
 #connect using gisdb_connect script, dont forget to enter credentials! #define connection deets
 host <- "104.248.162.185"
@@ -43,37 +43,30 @@ nationalbuffer<-buffers$nationalbuffer
 localbuffer<-buffers$localbuffer
 
 #get designated sites, and format produced dataframes 
-  #intnl
+  
 sac<-fetch_sac(internationalbuffer)
-sacdf<-formatdsdataframe(sac, siteboundary, name_col = "SAC_NAME", designation = "SAC", grid_ref_col = "GRID_REF")
-
 spa<-fetch_spa(internationalbuffer)
-spadf<-formatdsdataframe(spa, siteboundary, name_col = "SPA_NAME", designation = "SPA", grid_ref_col = "GRID_REF")
-
 ramsar<-fetch_ramsar(internationalbuffer)
-ramsardf<-formatdsdataframe(ramsar, siteboundary, name_col = "NAME", designation = "Ramsar", grid_ref_col = "GRID_REF")
-
-  #ntnl
 sssi<-fetch_sssi(nationalbuffer)
-sssidf<-formatdsdataframe(sssi, siteboundary, name_col = "NAME", designation = "SSSI")
-
 aonb<-fetch_aonb(nationalbuffer)
-aonbdf<-formatdsdataframe(aonb, siteboundary, name_col = "NAME", designation = "AONB")
-
 nnr<-fetch_nnr(nationalbuffer)
-nnrdf<-formatdsdataframe(nnr, siteboundary, name_col = "NNR_NAME", designation = "NNR", grid_ref_col = "REFERENCE")
-
-  #lcl
 lnr<-fetch_lnr(localbuffer)
+
+
+sacdf<-formatdsdataframe(sac, siteboundary, name_col = "SAC_NAME", designation = "SAC", grid_ref_col = "GRID_REF")
+spadf<-formatdsdataframe(spa, siteboundary, name_col = "SPA_NAME", designation = "SPA", grid_ref_col = "GRID_REF")
+ramsardf<-formatdsdataframe(ramsar, siteboundary, name_col = "NAME", designation = "Ramsar", grid_ref_col = "GRID_REF")
+sssidf<-formatdsdataframe(sssi, siteboundary, name_col = "NAME", designation = "SSSI")
+aonbdf<-formatdsdataframe(aonb, siteboundary, name_col = "NAME", designation = "AONB")
+nnrdf<-formatdsdataframe(nnr, siteboundary, name_col = "NNR_NAME", designation = "NNR", grid_ref_col = "REFERENCE")
 lnrdf<-formatdsdataframe(lnr, siteboundary, name_col = "LNR_NAME", designation = "LNR", grid_ref_col = "REFERENCE")
-
-#make into lists, and format tables from lists
-intnlsitelist<-list(sacdf, spadf, ramsardf)
-ntnlsitelist<-list(sssidf, aonbdf, nnrdf)
-localsitelist<-list(lnrdf)
-
-#get formatted tables
-intnldf<-formatdeskstudytables(intnlsitelist)
-ntnldf<-formatdeskstudytables(ntnlsitelist)
-lcldf<-formatdeskstudytables(localsitelist)
+# #make into lists, and format tables from lists
+# intnlsitelist<-list(sacdf, spadf, ramsardf)
+# ntnlsitelist<-list(sssidf, aonbdf, nnrdf)
+# localsitelist<-list(lnrdf)
+# 
+# #get formatted tables
+# intnldf<-formatdeskstudytables(intnlsitelist)
+# ntnldf<-formatdeskstudytables(ntnlsitelist)
+# lcldf<-formatdeskstudytables(localsitelist)
 

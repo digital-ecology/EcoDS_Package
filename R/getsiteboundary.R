@@ -16,5 +16,11 @@ getsiteboundary<-function(site_boundary_data){
   #make siteboundary right crs
   siteboundary<- st_transform(siteboundary, crs = 4326)
   
+  #check where theres more than one polygon and make it one 
+   if (nrow(siteboundary) > 1) {
+    siteboundary <- st_union(siteboundary) 
+    siteboundary <- st_sf(geometry = siteboundary) 
+  }
+  
   return(siteboundary)
 }
