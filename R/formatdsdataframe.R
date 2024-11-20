@@ -21,6 +21,9 @@ formatdsdataframe <- function(dsdata, siteboundary, name_col, designation, grid_
     #call min distance function
     dsdf <- getnearestdistance(dsdata, siteboundary, name = name_col)
     
+    #round distance to nearest 50m
+    dsdf$Distance <- round(dsdf$Distance / 50) * 50
+    
     #add designation on
     dsdf$Designation <- designation
     
@@ -28,8 +31,22 @@ formatdsdataframe <- function(dsdata, siteboundary, name_col, designation, grid_
     default_grid_ref = NA
     dsdf$GridRef <- if (!is.null(grid_ref_col)) dsdata[[grid_ref_col]] else default_grid_ref
     
+    #add reason for designation column
+    dsdf$Reason <- NA
+    
+    #if multiple measurements of one site distance, keep smallest distance only
+    dsdf <- dsdf %>%
+      dplyr::group_by(Name) %>%
+      dplyr::slice_min(Distance) %>%
+      dplyr::distinct(Name, Distance, .keep_all = TRUE) %>% #if multiple 0s, prints multiple names still 
+      dplyr::ungroup()
+    
     #rearrange and order 
-    dsdf <- dsdf %>% select(Name, Designation, GridRef, Distance)
+    dsdf <- dsdf %>% select(Name, Designation, GridRef, Reason, Distance)
+    
+    #set colnames
+    colnames(dsdf) <- c("Name", "Designation", "Grid Reference", "Reason For Designation", "Distance to Site (m)")
+    
   } else {
     
     colnames(dsdf) <- c("Name", "Designation", "Grid Reference", "Reason For Designation", "Distance to Site (m)")
