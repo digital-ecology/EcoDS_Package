@@ -17,13 +17,6 @@ formatdeskstudytables<-function(designatedsitelist){
     #mash together - may be better as rbind
     designatedsitedf<-Reduce(function(x, y) merge(x, y, all = TRUE), nonempty)
     
-    #create full df
-    designatedsitedf <- data.frame(
-      designatedsitedf[, 1:3], 
-      ReasonForDesignation = NA,
-      Distance = round(as.numeric(designatedsitedf[, -(1:3)]), -2)
-    )
-    
     designatedsitedf <- designatedsitedf[rowSums(is.na(designatedsitedf)) != ncol(designatedsitedf), ]
     
     #colnames
