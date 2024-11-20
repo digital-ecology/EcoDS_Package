@@ -56,17 +56,18 @@ lnr<-fetch_lnr(localbuffer)
 sacdf<-formatdsdataframe(sac, siteboundary, name_col = "SAC_NAME", designation = "SAC", grid_ref_col = "GRID_REF")
 spadf<-formatdsdataframe(spa, siteboundary, name_col = "SPA_NAME", designation = "SPA", grid_ref_col = "GRID_REF")
 ramsardf<-formatdsdataframe(ramsar, siteboundary, name_col = "NAME", designation = "Ramsar", grid_ref_col = "GRID_REF")
-sssidf<-formatdsdataframe(sssi, siteboundary, name_col = "NAME", designation = "SSSI")
+sssidf<-formatdsdataframe(sssi, siteboundary, name_col = "SSSI_NAME", designation = "SSSI")
 aonbdf<-formatdsdataframe(aonb, siteboundary, name_col = "NAME", designation = "AONB")
 nnrdf<-formatdsdataframe(nnr, siteboundary, name_col = "NNR_NAME", designation = "NNR", grid_ref_col = "REFERENCE")
 lnrdf<-formatdsdataframe(lnr, siteboundary, name_col = "LNR_NAME", designation = "LNR", grid_ref_col = "REFERENCE")
-# #make into lists, and format tables from lists
-# intnlsitelist<-list(sacdf, spadf, ramsardf)
-# ntnlsitelist<-list(sssidf, aonbdf, nnrdf)
-# localsitelist<-list(lnrdf)
-# 
-# #get formatted tables
-# intnldf<-formatdeskstudytables(intnlsitelist)
-# ntnldf<-formatdeskstudytables(ntnlsitelist)
-# lcldf<-formatdeskstudytables(localsitelist)
+
+#make into lists, and format tables from lists
+intnlsitelist<-list(sacdf, spadf, ramsardf)
+ntnlsitelist<-list(sssidf, aonbdf, nnrdf)
+localsitelist<-list(lnrdf)
+ 
+  #get formatted tables
+intnldf<-formatdeskstudytables(intnlsitelist)
+ntnldf<-formatdeskstudytables(ntnlsitelist)
+lcldf<-formatdeskstudytables(localsitelist)
 
