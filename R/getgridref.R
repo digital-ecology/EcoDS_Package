@@ -9,7 +9,7 @@
 #' \item{grid_reference_letternumeric}{Character string representing the letter and numeric grid reference of the centroid.}
 #'
 #' @export
-get_centroid_grid_reference <- function(sf_object) {
+getgridref <- function(sf_object) {
   # get the centroid
   centroid <- sf::st_centroid(sf_object)
   
