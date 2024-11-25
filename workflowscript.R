@@ -11,8 +11,8 @@ site_name <- "Drovers Hill Farm"
 host <- "104.248.162.185"
 port <- "5432"
 dbname <- "bngdata"
-user <- "maddie"
-password <- ""
+user <- "charlie"
+password <- "PaddleboardGuru99!"
 
 #connect
 con <- DBI::dbConnect(drv = RPostgreSQL::PostgreSQL(), dbname = dbname, host = host, port = port, user = user, password = password)
