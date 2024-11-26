@@ -1,40 +1,29 @@
-#' Identify site grid-reference
+#' extract grid reference from coordinates of site centroid
 #'
-#' @param sf_object an sf object output from the getsiteboundary function 
+#' @param siteboundary sf object output from getsiteboundary function
 #'
-#' @return A list containing:
-#' \item{x_coord}{Numeric value representing the longitude of the centroid.}
-#' \item{y_coord}{Numeric value representing the latitude of the centroid.}
-#' \item{grid_reference_numeric}{Character string representing the numeric grid reference of the centroid.}
-#' \item{grid_reference_letternumeric}{Character string representing the letter and numeric grid reference of the centroid.}
+#' @return object with a grid reference 
+#' @export 
 #'
-#' @export
-getgridref <- function(sf_object) {
-  # get the centroid
-  centroid <- sf::st_centroid(sf_object)
+getgridref <- function (siteboundary){
+  centroid <- sf::st_centroid(siteboundary)
+  shapefile <- sf::st_transform(siteboundary, crs = 27700)
+  centroid <- sf::st_transform(centroid, crs = 27700)
   
-  # extract coordinates
-  centroid_coords <- sf::st_coordinates(centroid)
-  x_coord <- centroid_coords[1, 1]  # long
-  y_coord <- centroid_coords[1, 2]  # lat
+  # Plot the polygon and centroid
+  # ggplot() +
+  #   geom_sf(data = shapefile, fill = "lightblue", color = "blue", alpha = 0.5) +
+  #   geom_sf(data = centroid, color = "red", size = 3) +
+  #   ggtitle("Polygon and Centroid") +
+  #   theme_minimal()
   
-  # ensure correct CRS of centroid (EPSG:27700 for OS grid references)
-  centroid_transformed <- sf::st_transform(centroid, crs = 27700)
+  long <- as.numeric(sf::st_coordinates(centroid)[, 1])
+  lat <- as.numeric(sf::st_coordinates(centroid)[, 2])
   
-  # re-calculate centroids in transformed CRS
-  centroid_coords_transformed <- sf::st_coordinates(centroid_transformed)
-  
-  # identify grid reference (numeric) of centroid
-  grid_reference_numeric <- sprintf("%d%d", centroid_coords_transformed[1, 1], centroid_coords_transformed[1, 2])
-  
-  # letter and numeric grid reference
-  grid_reference_letternumeric <- sgo::sgo_bng_ngr(list(sgo_points(centroid_coords_transformed[1, 1], centroid_coords_transformed[1, 2])))
-  
-  # return all relevant values
-  return(list(
-    x_coord = x_coord,
-    y_coord = y_coord,
-    grid_reference_numeric = grid_reference_numeric,
-    grid_reference_letternumeric = grid_reference_letternumeric
-  ))
+  sgo <- sgo::sgo_points(list(x=long, y=lat),
+                    coords=c("x", "y"), epsg=27700)
+  grid10 <-c()
+  grid10 <- sgo::sgo_bng_ngr(sgo)
+  grid8 <- sgo::sgo_bng_ngr(sgo, digits=8)
+  return(grid10)
 }

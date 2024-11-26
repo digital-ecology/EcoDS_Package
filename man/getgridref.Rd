@@ -2,20 +2,16 @@
 % Please edit documentation in R/getgridref.R
 \name{getgridref}
 \alias{getgridref}
-\title{Identify site grid-reference}
+\title{extract grid reference from coordinates of site centroid}
 \usage{
-getgridref(sf_object)
+getgridref(siteboundary)
 }
 \arguments{
-\item{sf_object}{an sf object output from the getsiteboundary function}
+\item{siteboundary}{sf object output from getsiteboundary function}
 }
 \value{
-A list containing:
-\item{x_coord}{Numeric value representing the longitude of the centroid.}
-\item{y_coord}{Numeric value representing the latitude of the centroid.}
-\item{grid_reference_numeric}{Character string representing the numeric grid reference of the centroid.}
-\item{grid_reference_letternumeric}{Character string representing the letter and numeric grid reference of the centroid.}
+object with a grid reference
 }
 \description{
-Identify site grid-reference
+extract grid reference from coordinates of site centroid
 }
