@@ -11,8 +11,8 @@ site_name <- "Drovers Hill Farm"
 host <- "104.248.162.185"
 port <- "5432"
 dbname <- "bngdata"
-user <- "charlie"
-password <- "PaddleboardGuru99!"
+user <- "maddie"
+password <- ""
 
 #connect
 con <- DBI::dbConnect(drv = RPostgreSQL::PostgreSQL(), dbname = dbname, host = host, port = port, user = user, password = password)
@@ -35,6 +35,7 @@ site_boundary_data <- dbGetQuery(conn = con, statement = query)
 
 #format site boundary
 siteboundary<-getsiteboundary(site_boundary_data)
+sitegridref <- getgridref(siteboundary)
 
 #get buffers
 buffers<-getbuffers(siteboundary)
