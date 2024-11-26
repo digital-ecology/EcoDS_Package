@@ -38,7 +38,7 @@ library(arcpullr)
 # REad in local file as a test 
 
 #format site boundary
-siteboundary<-getsiteboundary(st_read("data-raw/sample_site_boundary.shp"))
+siteboundary<-getsiteboundary(st_read(sample_site_boundary))
 sitegridref <- getgridref(siteboundary)
 
 #get buffers
