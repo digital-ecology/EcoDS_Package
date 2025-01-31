@@ -5,17 +5,10 @@
 #' @return object with a grid reference 
 #' @export 
 #'
-getgridref <- function (siteboundary){
-  centroid <- sf::st_centroid(siteboundary)
-  shapefile <- sf::st_transform(siteboundary, crs = 27700)
-  centroid <- sf::st_transform(centroid, crs = 27700)
+getgridref <- function(siteboundary){
   
-  # Plot the polygon and centroid
-  # ggplot() +
-  #   geom_sf(data = shapefile, fill = "lightblue", color = "blue", alpha = 0.5) +
-  #   geom_sf(data = centroid, color = "red", size = 3) +
-  #   ggtitle("Polygon and Centroid") +
-  #   theme_minimal()
+  centroid <- sf::st_centroid(siteboundary)
+  centroid <- sf::st_transform(centroid, crs = 27700)
   
   long <- as.numeric(sf::st_coordinates(centroid)[, 1])
   lat <- as.numeric(sf::st_coordinates(centroid)[, 2])

@@ -15,9 +15,9 @@ getnearestdistance <- function(designated_sites, siteboundary, name = "name") {
   
   #change this to be for each site name
   for (i in seq_len(nrow(designated_sites))) {
-    nearest_points <- st_nearest_points(designated_sites[i, ], siteboundary, pairwise = FALSE)
-    linestrings<- st_cast(nearest_points, "LINESTRING")
-    distances <- st_length(linestrings)
+    nearest_points <- sf::st_nearest_points(designated_sites[i, ], siteboundary, pairwise = FALSE)
+    linestrings<- sf::st_cast(nearest_points, "LINESTRING")
+    distances <- sf::st_length(linestrings)
     mindist[i] <- as.numeric(min(distances))
   }
   
