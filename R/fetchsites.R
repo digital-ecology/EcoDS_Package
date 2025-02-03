@@ -287,3 +287,22 @@ fetch_phi <- function(site){
   return(phi)
   
 }
+
+#' Fetch Local Planning Authority in which site is located
+#'
+#' @param site sf object for site of interest, in EPSG:4326
+#'
+#' @return a string for the LPA in which the site is located
+#' @export
+#'
+#' @examples \dontrun{lpa<-fetch_lpa(site)}
+fetch_lpa <- function(site){
+  
+  lpa_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Boundary_Line_Data/FeatureServer/14"
+  lpa <- arcpullr::get_layer_by_poly(lpa_url, site, sp_rel = "intersects")
+  
+  lpa <- lpa$NAME
+  
+  return(lpa)
+  
+}
