@@ -306,3 +306,22 @@ fetch_lpa <- function(site){
   return(lpa)
   
 }
+
+#' Fetch National Character Area in which site is located
+#'
+#' @param site sf object for site of interest, in EPSG:4326
+#'
+#' @return a string for the NCA in which the site is located
+#' @export
+#'
+#' @examples \dontrun{nca<-fetch_nca(site)}
+fetch_nca <- function(site){
+  
+  nca_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/National_Character_Areas_England/FeatureServer/0"
+  nca <- arcpullr::get_layer_by_poly(nca_url, site, sp_rel = "intersects")
+  
+  nca <- nca$NCA_Name
+  
+  return(nca)
+  
+}
