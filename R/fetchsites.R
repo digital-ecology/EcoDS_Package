@@ -14,7 +14,7 @@ fetch_sssi <- function(nationalbuffers){
   # return just columns needed
   s <- data.frame(
     name = sssi$SSSI_NAME,
-    desingation = "SSSI",
+    designation = "SSSI",
     gridref = sssi$REFERENCE,
     distance_to_site = NA,
     geom = sssi$geoms
@@ -48,7 +48,7 @@ fetch_aonb <- function(nationalbuffers){
   else{
     a <- data.frame(
       name = aonb$NAME,
-      desingation = "AONB",
+      designation = "AONB",
       gridref = NA,
       distance_to_site = NA,
       geom = aonb$geoms
@@ -83,10 +83,10 @@ fetch_nnr <- function(nationalbuffers){
   else{
     n <- data.frame(
       name = nnr$NNR_NAME,
-      desingation = "NNR",
+      designation = "NNR",
       gridref = nnr$REFERENCE,
       distance_to_site = NA,
-      geom = aonb$geoms
+      geom = nnr$geoms
     )
   }
   
@@ -118,7 +118,7 @@ fetch_sac <- function(internationalbuffers){
   else{
     sa <- data.frame(
       name = sac$SAC_NAME,
-      desingation = "SAC",
+      designation = "SAC",
       gridref = sac$GRID_REF,
       distance_to_site = NA,
       geom = sac$geoms
@@ -153,7 +153,7 @@ fetch_spa <- function(internationalbuffers){
   else{
     sp <- data.frame(
       name = spa$SPA_NAME,
-      desingation = "SPA",
+      designation = "SPA",
       gridref = spa$GRID_REF,
       distance_to_site = NA,
       geom = spa$geoms
@@ -188,7 +188,7 @@ fetch_ramsar <- function(internationalbuffers){
   else{
     r <- data.frame(
       name = ramsar$NAME,
-      desingation = "Ramsar",
+      designation = "Ramsar",
       gridref = ramsar$GRID_REF,
       distance_to_site = NA,
       geom = ramsar$geoms
@@ -223,7 +223,7 @@ fetch_lnr <- function(localbuffers){
   else{
     l <- data.frame(
       name = lnr$LNR_NAME,
-      desingation = "LNR",
+      designation = "LNR",
       gridref = NA,
       distance_to_site = NA,
       geom = lnr$geoms
@@ -258,7 +258,7 @@ fetch_natpark <- function(nationalbuffers){
   else{
     p <- data.frame(
       name = natpark$NAME,
-      desingation = "National Park",
+      designation = "National Park",
       gridref = NA,
       distance_to_site = NA,
       geom = natpark$geoms
@@ -268,5 +268,22 @@ fetch_natpark <- function(nationalbuffers){
   natpark <- if(nrow(natpark)>0){sf::st_as_sf(p)}
   
   return(natpark)
+  
+}
+
+#' Fetch Priority Habitat Inventory (PHI) data that intersect site
+#'
+#' @param site sf object for site of interest, in EPSG:4326
+#'
+#' @return a dataframe containing data on priority habitats that intersect the site
+#' @export
+#'
+#' @examples \dontrun{phi<-fetch_phi(localbuffers)}
+fetch_phi <- function(site){
+  
+  phi_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Priority_Habitats_Inventory_England/FeatureServer/0"
+  phi <- arcpullr::get_layer_by_poly(phi_url, site, sp_rel = "intersects")
+  
+  return(phi)
   
 }
