@@ -109,6 +109,24 @@ fetch_sac <- function(internationalbuffers){
   sac_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Special_Areas_of_Conservation_England/FeatureServer/0"
   sac <- arcpullr::get_layer_by_poly(sac_url, internationalbuffers, sp_rel = "intersects")
   
+  # keep just the columns needed
+  # catch empty df's
+  
+  if(nrow(sac) ==0){
+    sa <- NULL
+  }
+  else{
+    sa <- data.frame(
+      name = sac$SAC_NAME,
+      desingation = "SAC",
+      gridref = sac$GRID_REF,
+      distance_to_site = NA,
+      geom = sac$geoms
+    )
+  }
+  
+  sac <- if(nrow(sac)>0){sf::st_as_sf(sa)}
+  
   return(sac)
   
 }
@@ -126,6 +144,24 @@ fetch_spa <- function(internationalbuffers){
   spa_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Special_Protection_Areas_England/FeatureServer/0"
   spa <- arcpullr::get_layer_by_poly(spa_url, internationalbuffers, sp_rel = "intersects")
   
+  # keep just the columns needed
+  # catch empty df's
+  
+  if(nrow(spa) ==0){
+    sp <- NULL
+  }
+  else{
+    sp <- data.frame(
+      name = spa$SPA_NAME,
+      desingation = "SPA",
+      gridref = spa$GRID_REF,
+      distance_to_site = NA,
+      geom = spa$geoms
+    )
+  }
+  
+  spa <- if(nrow(spa)>0){sf::st_as_sf(sp)}
+  
   return(spa)
   
 }
@@ -142,6 +178,24 @@ fetch_ramsar <- function(internationalbuffers){
   
   ramsar_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Ramsar_England/FeatureServer/0"
   ramsar <- arcpullr::get_layer_by_poly(ramsar_url, internationalbuffers, sp_rel = "intersects")
+  
+  # keep just the columns needed
+  # catch empty df's
+  
+  if(nrow(ramsar) ==0){
+    r <- NULL
+  }
+  else{
+    r <- data.frame(
+      name = ramsar$NAME,
+      desingation = "Ramsar",
+      gridref = ramsar$GRID_REF,
+      distance_to_site = NA,
+      geom = ramsar$geoms
+    )
+  }
+  
+  ramsar <- if(nrow(ramsar)>0){sf::st_as_sf(r)}
   
   return(ramsar)
   

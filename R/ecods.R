@@ -19,7 +19,9 @@ ecods <- function(siteboundary){
   
   # fetch sites
   # international
-  
+  spa <- fetch_spa(ten)
+  sac <- fetch_sac(ten)
+  ramsar <- fetch_ramsar(ten)
   
   # national
   sssi <- fetch_sssi(fiv)
@@ -30,11 +32,10 @@ ecods <- function(siteboundary){
   # local
   lnr <- fetch_lnr(two)
   
-  #TODO combine above tables
-  sites <- rbind(sssi, nnr, aonb, natpark, lnr)
+  # combine above tables
+  sites <- rbind(spa, sac, ramsar, sssi, nnr, aonb, natpark, lnr)
   
   # distance to feature
-  # run on combined table
   x <- sf::st_distance(sf::st_transform(sample_site_boundary, 4326), sites)
   x <- as.numeric(round(x,2))
   sites$distance_to_site <- x
@@ -43,8 +44,6 @@ ecods <- function(siteboundary){
   gr <- getgridref(sites)
   gr <- unlist(gr, use.names = FALSE)
   sites$gridref <- gr
-  
-  
   
   return(sites)
   
