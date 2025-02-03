@@ -1,10 +1,13 @@
 Package: ecods
 Title: Automated Desk Studies for Ecology Reports
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Authors@R:c(
+    person(given = "Charlie", family = "Hewitt", email = "charlie@digital-ecology.co.uk", role = c("aut", "cre")),
+    person(given = "Maddie", family = "Lucas", email = "maddie@digital-ecology.co.uk", role = c("aut")),
+    person(given = "Dan", family = "Carpenter", email = "dan@digital-ecology.co.uk", role = c("aut")),
+    person(given = "Digital Ecology Limited", role = "cph")
+    )
+Description: Create automated desk studies for UK ecology reports.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
