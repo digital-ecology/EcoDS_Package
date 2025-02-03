@@ -1,3 +1,9 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # ecods
 
-Creating automated desk studies for ecology reports
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of ecods is to …
