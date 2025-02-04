@@ -16,5 +16,5 @@ a dataframe containing data on priority habitats that intersect the site
 Fetch Priority Habitat Inventory (PHI) data from 500m buffer of site
 }
 \examples{
-fetch_phi(sample_site_boundary)
+fetch_phi_buffer(sample_site_boundary)
 }

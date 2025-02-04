@@ -278,7 +278,7 @@ fetch_natpark <- function(nationalbuffers){
 #' @return a dataframe containing data on priority habitats that intersect the site
 #' @export
 #'
-#' @examples fetch_phi(sample_site_boundary)
+#' @examples fetch_phi_site(sample_site_boundary)
 fetch_phi_site <- function(site){
   
   phi_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Priority_Habitats_Inventory_England/FeatureServer/0"
