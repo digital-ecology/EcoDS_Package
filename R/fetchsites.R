@@ -278,8 +278,27 @@ fetch_natpark <- function(nationalbuffers){
 #' @return a dataframe containing data on priority habitats that intersect the site
 #' @export
 #'
-#' @examples \dontrun{phi<-fetch_phi(localbuffers)}
-fetch_phi <- function(site){
+#' @examples fetch_phi(sample_site_boundary)
+fetch_phi_site <- function(site){
+  
+  phi_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Priority_Habitats_Inventory_England/FeatureServer/0"
+  phi <- arcpullr::get_layer_by_poly(phi_url, site, sp_rel = "intersects")
+  
+  return(phi)
+  
+}
+
+#' Fetch Priority Habitat Inventory (PHI) data from 500m buffer of site
+#'
+#' @param site sf object for site of interest, in EPSG:4326
+#'
+#' @return a dataframe containing data on priority habitats that intersect the site
+#' @export
+#'
+#' @examples fetch_phi(sample_site_boundary)
+fetch_phi_buffer <- function(site){
+  
+  site <- sf::st_buffer(site, 500)
   
   phi_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Priority_Habitats_Inventory_England/FeatureServer/0"
   phi <- arcpullr::get_layer_by_poly(phi_url, site, sp_rel = "intersects")
@@ -314,7 +333,7 @@ fetch_lpa <- function(site){
 #' @return a string for the NCA in which the site is located
 #' @export
 #'
-#' @examples \dontrun{nca<-fetch_nca(site)}
+#' @examples fetch_nca(sample_site_boundary)
 fetch_nca <- function(site){
   
   nca_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/National_Character_Areas_England/FeatureServer/0"
@@ -323,5 +342,77 @@ fetch_nca <- function(site){
   nca <- nca$NCA_Name
   
   return(nca)
+  
+}
+
+#' Fetch Ancient Woodland data intersecting site boundary
+#'
+#' @param site sf object for site of interest, in EPSG:4326
+#'
+#' @return an sf object of ancient woodland data intersecting the site
+#' @export
+#'
+#' @examples fetch_awi(sample_site_boundary)
+fetch_awi <- function(site){
+  
+  awi_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Ancient_Woodland_Revised_England/FeatureServer/2"
+  awi <- arcpullr::get_layer_by_poly(awi_url, site, sp_rel = "intersects")
+  
+  #nca <- nca$NCA_Name
+  
+  return(awi)
+  
+}
+
+#' Fetch irreplaceable habitats intersecting site boundary
+#'
+#' @param site sf object for site of interest, in EPSG:4326
+#'
+#' @return an sf object of irreplaceable habitats intersecting the site
+#' @export
+#'
+#' @examples fetch_irreplaceable(sample_site_boundary)
+fetch_irreplaceable <- function(site){
+  
+  awi <- fetch_awi(site)
+  
+  if(nrow(awi) ==0){
+    a <- NULL
+  }
+  else{
+    a <- data.frame(
+      type = "Ancient woodland",
+      habitat = awi$NAME,
+      geom = awi$geoms
+    )
+
+  }
+  
+  
+  phi <- fetch_phi_site(site)
+  # filter out irreplaceable habitats
+  phi <- phi[phi$MainHabs %in% c("Blanket bog",
+                          "Limestone pavements",
+                          "Coastal sand dunes",
+                          "Spartina saltmarsh swards",
+                          "Mediterranean saltmarsh scrub",
+                          "Lowland fens"),]
+  
+  if(nrow(phi) ==0){
+    p <- NULL
+  }
+  else{
+    p <- data.frame(
+      type = "Priority habitat",
+      habitat = phi$MainHabs,
+      geom = phi$geoms
+    )
+    
+  }
+  
+  irre <- rbind(a, p)
+  
+  return(irre)
+  
   
 }

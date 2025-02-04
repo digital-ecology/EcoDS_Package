@@ -16,5 +16,5 @@ a string for the NCA in which the site is located
 Fetch National Character Area in which site is located
 }
 \examples{
-\dontrun{nca<-fetch_nca(site)}
+fetch_nca(sample_site_boundary)
 }
