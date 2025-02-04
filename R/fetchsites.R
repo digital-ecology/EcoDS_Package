@@ -295,7 +295,7 @@ fetch_phi_site <- function(site){
 #' @return a dataframe containing data on priority habitats that intersect the site
 #' @export
 #'
-#' @examples fetch_phi(sample_site_boundary)
+#' @examples fetch_phi_buffer(sample_site_boundary)
 fetch_phi_buffer <- function(site){
   
   site <- sf::st_buffer(site, 500)
