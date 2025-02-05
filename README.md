@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ecods <a href="https://digital-ecology.co.uk/batreportr.html"><img src="man/figures/BatReportR_hex.png" align="right" height="138" /></a>
+# EcoDS - ecological desk studies
 
 <!-- badges: start -->
 <!-- badges: end -->
