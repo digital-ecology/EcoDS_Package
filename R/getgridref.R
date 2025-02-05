@@ -1,4 +1,4 @@
-#' extract grid reference from coordinates of site centroid
+#' Extract grid reference from coordinates of site centroid
 #'
 #' @param siteboundary sf object output from getsiteboundary function
 #'

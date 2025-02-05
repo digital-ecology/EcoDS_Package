@@ -23,7 +23,6 @@ Depends:
 LazyData: true
 Imports: 
     arcpullr,
-    dplyr,
     magrittr,
     sf,
     sgo

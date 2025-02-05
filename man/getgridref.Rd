@@ -2,7 +2,7 @@
 % Please edit documentation in R/getgridref.R
 \name{getgridref}
 \alias{getgridref}
-\title{extract grid reference from coordinates of site centroid}
+\title{Extract grid reference from coordinates of site centroid}
 \usage{
 getgridref(siteboundary)
 }
@@ -13,5 +13,5 @@ getgridref(siteboundary)
 object with a grid reference
 }
 \description{
-extract grid reference from coordinates of site centroid
+Extract grid reference from coordinates of site centroid
 }
