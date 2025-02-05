@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetchsites.R
 \name{fetch_lnr}
 \alias{fetch_lnr}
-\title{fetch_lnr}
+\title{Fetch LNRs within 2km of site}
 \usage{
 fetch_lnr(localbuffers)
 }
@@ -13,7 +13,7 @@ fetch_lnr(localbuffers)
 a dataframe containing data regarding the designated site type searched
 }
 \description{
-fetch_lnr
+Fetch LNRs within 2km of site
 }
 \examples{
 \dontrun{lnr<-fetch_lnr(localbuffers)}

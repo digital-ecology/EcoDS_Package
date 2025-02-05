@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetchsites.R
 \name{fetch_sac}
 \alias{fetch_sac}
-\title{fetch_sac}
+\title{Fetch SACs within 10km of site}
 \usage{
 fetch_sac(internationalbuffers)
 }
@@ -13,7 +13,7 @@ fetch_sac(internationalbuffers)
 a dataframe containing data regarding the designated site type searched
 }
 \description{
-fetch_sac
+Fetch SACs within 10km of site
 }
 \examples{
 \dontrun{sac<-fetch_sac(internationalbuffers)}

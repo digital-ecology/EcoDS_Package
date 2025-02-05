@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetchsites.R
 \name{fetch_sssi}
 \alias{fetch_sssi}
-\title{fetch_sssi}
+\title{Fetch SSSIs within 5km buffer of site}
 \usage{
 fetch_sssi(nationalbuffers)
 }
@@ -13,7 +13,7 @@ fetch_sssi(nationalbuffers)
 a dataframe containing data regarding the designated site type searched
 }
 \description{
-fetch_sssi
+Fetch SSSIs within 5km buffer of site
 }
 \examples{
 \dontrun{sssi<-fetch_sssi(nationalbuffers)}

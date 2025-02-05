@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetchsites.R
 \name{fetch_natpark}
 \alias{fetch_natpark}
-\title{fetch_natpark}
+\title{Fetch National Parks within 5km of site}
 \usage{
 fetch_natpark(nationalbuffers)
 }
@@ -13,7 +13,7 @@ fetch_natpark(nationalbuffers)
 a dataframe containing data regarding the designated site type searched
 }
 \description{
-fetch_natpark
+Fetch National Parks within 5km of site
 }
 \examples{
 \dontrun{natpark<-fetch_natpark(nationalbuffers)}

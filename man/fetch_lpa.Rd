@@ -16,5 +16,5 @@ a string for the LPA in which the site is located
 Fetch Local Planning Authority in which site is located
 }
 \examples{
-\dontrun{lpa<-fetch_lpa(site)}
+fetch_lpa(sf::st_transform(sample_site_boundary, 4326))
 }

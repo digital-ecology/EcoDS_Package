@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetchsites.R
 \name{fetch_nnr}
 \alias{fetch_nnr}
-\title{fetch_nnr}
+\title{Fetch NNRs within 5km of site}
 \usage{
 fetch_nnr(nationalbuffers)
 }
@@ -13,7 +13,7 @@ fetch_nnr(nationalbuffers)
 a dataframe containing data regarding the designated site type searched
 }
 \description{
-fetch_nnr
+Fetch NNRs within 5km of site
 }
 \examples{
 \dontrun{nnr<-fetch_nnr(nationalbuffers)}

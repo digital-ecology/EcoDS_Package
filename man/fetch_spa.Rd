@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetchsites.R
 \name{fetch_spa}
 \alias{fetch_spa}
-\title{fetch_spa}
+\title{Fetch SPAs within 10km of site}
 \usage{
 fetch_spa(internationalbuffers)
 }
@@ -13,7 +13,7 @@ fetch_spa(internationalbuffers)
 a dataframe containing data regarding the designated site type searched
 }
 \description{
-fetch_spa
+Fetch SPAs within 10km of site
 }
 \examples{
 \dontrun{spa<-fetch_spa(internationalbuffers)}

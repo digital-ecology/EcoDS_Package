@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetchsites.R
 \name{fetch_ramsar}
 \alias{fetch_ramsar}
-\title{fetch_ramsar}
+\title{Fetch Ramsar sites within 10km of site}
 \usage{
 fetch_ramsar(internationalbuffers)
 }
@@ -13,7 +13,7 @@ fetch_ramsar(internationalbuffers)
 a dataframe containing data regarding the designated site type searched
 }
 \description{
-fetch_ramsar
+Fetch Ramsar sites within 10km of site
 }
 \examples{
 \dontrun{ramsar<-fetch_ramsar(internationalbuffers)}

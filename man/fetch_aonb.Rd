@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetchsites.R
 \name{fetch_aonb}
 \alias{fetch_aonb}
-\title{fetch_aonb}
+\title{Fetch AONBs within 5km of site}
 \usage{
 fetch_aonb(nationalbuffers)
 }
@@ -13,7 +13,7 @@ fetch_aonb(nationalbuffers)
 a dataframe containing data regarding the designated site type searched
 }
 \description{
-fetch_aonb
+Fetch AONBs within 5km of site
 }
 \examples{
 \dontrun{aonb<-fetch_aonb(nationalbuffers)}

@@ -1,4 +1,4 @@
-#' fetch_sssi
+#' Fetch SSSIs within 5km buffer of site
 #'
 #' @param nationalbuffers buffer zone created by getbuffers
 #'
@@ -32,7 +32,7 @@ fetch_sssi <- function(nationalbuffers){
   
 }
 
-#' fetch_aonb
+#' Fetch AONBs within 5km of site
 #'
 #' @param nationalbuffers buffer zone created by getbuffers
 #'
@@ -67,7 +67,7 @@ fetch_aonb <- function(nationalbuffers){
   
 }
 
-#' fetch_nnr
+#' Fetch NNRs within 5km of site
 #'
 #' @param nationalbuffers buffer zone created by getbuffers
 #'
@@ -102,7 +102,7 @@ fetch_nnr <- function(nationalbuffers){
   
 }
 
-#' fetch_sac
+#' Fetch SACs within 10km of site
 #'
 #' @param internationalbuffers buffer zone created by getbuffers
 #'
@@ -137,7 +137,7 @@ fetch_sac <- function(internationalbuffers){
   
 }
 
-#' fetch_spa
+#' Fetch SPAs within 10km of site
 #'
 #' @param internationalbuffers buffer zone created by getbuffers
 #'
@@ -172,7 +172,7 @@ fetch_spa <- function(internationalbuffers){
   
 }
 
-#' fetch_ramsar
+#' Fetch Ramsar sites within 10km of site
 #'
 #' @param internationalbuffers buffer zone created by getbuffers
 #'
@@ -207,7 +207,7 @@ fetch_ramsar <- function(internationalbuffers){
   
 }
 
-#' fetch_lnr
+#' Fetch LNRs within 2km of site
 #'
 #' @param localbuffers buffer zone created by getbuffers
 #'
@@ -242,7 +242,7 @@ fetch_lnr <- function(localbuffers){
   
 }
 
-#' fetch_natpark
+#' Fetch National Parks within 5km of site
 #'
 #' @param nationalbuffers buffer zone created by getbuffers
 #'
@@ -320,7 +320,7 @@ fetch_phi_buffer <- function(site){
 #' @return a string for the LPA in which the site is located
 #' @export
 #'
-#' @examples \dontrun{lpa<-fetch_lpa(site)}
+#' @examples fetch_lpa(sf::st_transform(sample_site_boundary, 4326))
 fetch_lpa <- function(site){
   
   lpa_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Boundary_Line_Data/FeatureServer/14"
