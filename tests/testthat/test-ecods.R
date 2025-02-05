@@ -12,4 +12,7 @@ test_that("ecods function works",{
   # Test that distance_to_site is a number
   expect_true(is.numeric(result$distance_to_site))
   
+  # Test result is of class sf
+  expect_true(isClass("sf", result))
+  
 })
