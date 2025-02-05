@@ -40,7 +40,9 @@ remotes::install_git("https://codeberg.org/Digital-Ecology/EcoDS_Package.git")
 
 The main function in the package is the `ecods()` function. This creates buffers around an input site, and returns an sf object with the sites that intersect those buffers. The package has an example site to demonstrate the function.
 ```{r, message = FALSE, warning = FALSE}
-site <- sample_site_boundary
+library(ecods)
+
+site <- sf::st_transform(sample_site_boundary, 4326)
 
 ecods(site)
 ```
