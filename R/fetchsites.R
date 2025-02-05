@@ -12,15 +12,21 @@ fetch_sssi <- function(nationalbuffers){
   sssi <- arcpullr::get_layer_by_poly(sssi_url, nationalbuffers, sp_rel = "intersects")
   
   # return just columns needed
-  s <- data.frame(
-    name = sssi$SSSI_NAME,
-    designation = "SSSI",
-    gridref = sssi$REFERENCE,
-    distance_to_site = NA,
-    geom = sssi$geoms
-  )
+  if(nrow(sssi) ==0){
+    s <- NULL
+  }
+  else{
+    s <- data.frame(
+      name = sssi$SSSI_NAME,
+      designation = "SSSI",
+      gridref = sssi$REFERENCE,
+      distance_to_site = NA,
+      geom = sssi$geoms
+    )
+    
+  }
   
-  sssi <- sf::st_as_sf(s)
+  sssi <- if(nrow(sssi)>0){sf::st_as_sf(s)}
   
   return(sssi)
   
