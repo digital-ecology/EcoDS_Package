@@ -36,7 +36,7 @@ ecods <- function(siteboundary){
   sites <- rbind(spa, sac, ramsar, sssi, nnr, aonb, natpark, lnr)
   
   # distance to feature
-  x <- sf::st_distance(sf::st_transform(sample_site_boundary, 4326), sites)
+  x <- sf::st_distance(siteboundary, sites)
   x <- as.numeric(round(x,2))
   sites$distance_to_site <- x
   
