@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ecods
+# EcoDS - ecological desk studies
 
 <!-- badges: start -->
 <!-- badges: end -->

@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ecods
+# EcoDS - ecological desk studies
 
 <!-- badges: start -->
 <!-- badges: end -->
