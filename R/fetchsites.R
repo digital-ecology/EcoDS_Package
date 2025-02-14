@@ -373,12 +373,15 @@ fetch_awi <- function(site){
 #' Fetch irreplaceable habitats intersecting site boundary
 #'
 #' @param site sf object for site of interest, in EPSG:4326
+#' @param buffer the buffer to apply to the site, in metres
 #'
 #' @return an sf object of irreplaceable habitats intersecting the site
 #' @export
 #'
 #' @examples fetch_irreplaceable(sample_site_boundary)
-fetch_irreplaceable <- function(site){
+fetch_irreplaceable <- function(site, buffer = 0){
+  
+  site <- sf::st_buffer(site, buffer)
   
   awi <- fetch_awi(site)
   

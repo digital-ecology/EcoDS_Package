@@ -4,10 +4,12 @@
 \alias{fetch_irreplaceable}
 \title{Fetch irreplaceable habitats intersecting site boundary}
 \usage{
-fetch_irreplaceable(site)
+fetch_irreplaceable(site, buffer = 0)
 }
 \arguments{
 \item{site}{sf object for site of interest, in EPSG:4326}
+
+\item{buffer}{the buffer to apply to the site, in metres}
 }
 \value{
 an sf object of irreplaceable habitats intersecting the site
