@@ -12,18 +12,15 @@ fetch_sssi <- function(nationalbuffers){
   sssi <- arcpullr::get_layer_by_poly(sssi_url, nationalbuffers, sp_rel = "intersects")
   
   # return just columns needed
-  if(nrow(sssi) ==0){
+  if(nrow(sssi) == 0){
     s <- NULL
-  }
-  else{
+  }else{
     s <- data.frame(
-      name = sssi$SSSI_NAME,
+      name = sssi$NAME,
       designation = "SSSI",
-      gridref = sssi$REFERENCE,
+      gridref = NA,
       distance_to_site = NA,
-      geom = sssi$geoms
-    )
-    
+      geom = sssi$geoms)
   }
   
   sssi <- if(nrow(sssi)>0){sf::st_as_sf(s)}
@@ -85,12 +82,11 @@ fetch_nnr <- function(nationalbuffers){
   
   if(nrow(nnr) ==0){
     n <- NULL
-  }
-  else{
+  }else{
     n <- data.frame(
-      name = nnr$NNR_NAME,
+      name = nnr$NAME,
       designation = "NNR",
-      gridref = nnr$REFERENCE,
+      gridref = NA,
       distance_to_site = NA,
       geom = nnr$geoms
     )
@@ -120,15 +116,13 @@ fetch_sac <- function(internationalbuffers){
   
   if(nrow(sac) ==0){
     sa <- NULL
-  }
-  else{
+  }else{
     sa <- data.frame(
       name = sac$SAC_NAME,
       designation = "SAC",
       gridref = sac$GRID_REF,
       distance_to_site = NA,
-      geom = sac$geoms
-    )
+      geom = sac$geoms)
   }
   
   sac <- if(nrow(sac)>0){sf::st_as_sf(sa)}
@@ -155,8 +149,7 @@ fetch_spa <- function(internationalbuffers){
   
   if(nrow(spa) ==0){
     sp <- NULL
-  }
-  else{
+  }else{
     sp <- data.frame(
       name = spa$SPA_NAME,
       designation = "SPA",
@@ -190,8 +183,7 @@ fetch_ramsar <- function(internationalbuffers){
   
   if(nrow(ramsar) ==0){
     r <- NULL
-  }
-  else{
+  }else{
     r <- data.frame(
       name = ramsar$NAME,
       designation = "Ramsar",
@@ -225,10 +217,9 @@ fetch_lnr <- function(localbuffers){
   
   if(nrow(lnr) ==0){
     l <- NULL
-  }
-  else{
+  }else{
     l <- data.frame(
-      name = lnr$LNR_NAME,
+      name = lnr$NAME,
       designation = "LNR",
       gridref = NA,
       distance_to_site = NA,
@@ -260,8 +251,7 @@ fetch_natpark <- function(nationalbuffers){
   
   if(nrow(natpark) ==0){
     p <- NULL
-  }
-  else{
+  }else{
     p <- data.frame(
       name = natpark$NAME,
       designation = "National Park",
@@ -364,8 +354,6 @@ fetch_awi <- function(site){
   awi_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Ancient_Woodland_Revised_England/FeatureServer/2"
   awi <- arcpullr::get_layer_by_poly(awi_url, site, sp_rel = "intersects")
   
-  #nca <- nca$NCA_Name
-  
   return(awi)
   
 }
@@ -387,8 +375,7 @@ fetch_irreplaceable <- function(site, buffer = 0){
   
   if(nrow(awi) ==0){
     a <- NULL
-  }
-  else{
+  }else{
     a <- data.frame(
       type = "Ancient woodland",
       habitat = awi$NAME,
@@ -409,8 +396,7 @@ fetch_irreplaceable <- function(site, buffer = 0){
   
   if(nrow(phi) ==0){
     p <- NULL
-  }
-  else{
+  }else{
     p <- data.frame(
       type = "Priority habitat",
       habitat = phi$MainHabs,
