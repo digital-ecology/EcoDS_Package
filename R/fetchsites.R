@@ -351,7 +351,7 @@ fetch_nca <- function(site){
 #' @examples fetch_awi(sample_site_boundary)
 fetch_awi <- function(site){
   
-  awi_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Ancient_Woodland_Revised_England/FeatureServer/2"
+  awi_url <- "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/Ancient_Woodland_England/FeatureServer/0"
   awi <- arcpullr::get_layer_by_poly(awi_url, site, sp_rel = "intersects")
   
   return(awi)
